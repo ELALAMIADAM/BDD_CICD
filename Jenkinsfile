@@ -6,6 +6,8 @@ pipeline {
 
         stage('Start Selenium') {
             steps {
+                sh 'docker rm -f selenium-hub || true'
+                sh 'docker compose down --remove-orphans || true'
                 sh 'docker compose up -d'
                 sh 'docker compose ps'
             }
