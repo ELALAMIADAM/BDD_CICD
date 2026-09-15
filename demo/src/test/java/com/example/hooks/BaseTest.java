@@ -19,12 +19,12 @@ public class BaseTest {
     public void setUp(){
         URL gridUrl = null;
         try {
-            gridUrl = new URL("http://127.1.0.1:4444");
+            gridUrl = new URL("http://selenium-hub:4444/wd/hub");
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
-        ChromeOptions cho = new ChromeOptions();
-        driver = new RemoteWebDriver(gridUrl, cho);
+        ChromeOptions co = new ChromeOptions();
+        driver = new RemoteWebDriver(gridUrl, co);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
     }
 
