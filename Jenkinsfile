@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        COMPOSE_PROJECT_NAME = 'selennium_Orangehrm'
+        COMPOSE_PROJECT_NAME = 'orangehrm'
     }
 
     stages {
@@ -20,7 +20,7 @@ pipeline {
             agent {
                 docker {
                     image 'maven:3.9.9-amazoncorretto-17'
-                    args '--entrypoint="" --shm-size=2g --network=selennium_Orangehrm_default'
+                    args '--entrypoint="" --shm-size=2g --network=orangehrm_default'
                     reuseNode true
                 }
             }
@@ -29,13 +29,13 @@ pipeline {
             }
         }
 
-        stage('Report') {
-            steps {
-                allure([
-                    results: [[path: 'demoshop/target/allure-results']]
-                ])
-            }
-        }
+        // stage('Report') {
+        //     steps {
+        //         allure([
+        //             results: [[path: 'demo/target/allure-results']]
+        //         ])
+        //     }
+        // }
 
     }
 
