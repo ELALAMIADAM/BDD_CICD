@@ -6,6 +6,7 @@ import java.time.Duration;
 
 
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
@@ -25,6 +26,7 @@ public class BaseTest {
         }
         ChromeOptions co = new ChromeOptions();
         driver = new RemoteWebDriver(gridUrl, co);
+        // driver = new ChromeDriver();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
     }
 
