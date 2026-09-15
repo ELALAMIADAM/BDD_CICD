@@ -140,6 +140,33 @@ Checkout du projet
 
 Pour une CI/CD plus robuste, il est recommandé d'ajouter une étape `post { always { ... } }` afin d'archiver les rapports et d'arrêter Docker même lorsque les tests échouent. Il est également recommandé d'attendre que le hub Selenium soit réellement prêt avant de lancer Maven.
 
+### Résultat Jenkins obtenu
+
+Le build Jenkins `#7` a été exécuté avec succès le 15 septembre 2026 dans le conteneur Maven connecté au réseau Selenium Grid.
+
+```text
+Scenario: User Story
+  Given go to "https://opensource-demo.orangehrmlive.com/web/index.php/auth/login"
+  When Enter username "Admin" and password "admin123"
+  And Click Login button
+  Then Verify Existance of "My Actions" and "Quick Launch"
+
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0
+[INFO] BUILD SUCCESS
+Finished at: 2026-09-15T13:50:55Z
+Finished: SUCCESS
+```
+
+### Interprétation du résultat
+
+- **Statut Jenkins :** `SUCCESS`.
+- **Tests exécutés :** 1 scénario Cucumber.
+- **Résultat :** 1 test réussi, 0 échec, 0 erreur et 0 test ignoré.
+- **Rapports :** les rapports HTML, JSON et Surefire sont générés dans `demo/target`.
+- **Infrastructure :** Selenium Grid et le navigateur Chrome ont été correctement utilisés depuis Docker.
+
+Le log contient aussi des avertissements concernant des classes JNA manquantes (`com.sun.jna.FunctionMapper` et `com.sun.jna.Library`) pendant le scan automatique du classpath Cucumber. Ces avertissements ne bloquent pas l'exécution dans ce build, mais ils peuvent être supprimés en configurant explicitement le glue Cucumber sur `com.example`, au lieu de scanner tout le classpath.
+
 ## 8. Structure principale
 
 ```text
